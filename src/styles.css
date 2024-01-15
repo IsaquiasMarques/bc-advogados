@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    @font-face {
+        font-family: 'Inter';
+        src: url('assets/fonts/inter/Inter-Regular-400.ttf');
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        src: url('assets/fonts/inter/Inter-Medium-500.ttf');
+        font-weight: 500;
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        src: url('assets/fonts/inter/Inter-SemiBold-600.ttf');
+        font-weight: 600;
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        src: url('assets/fonts/inter/Inter-Bold-700.ttf');
+        font-weight: 700;
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        src: url('assets/fonts/inter/Inter-ExtraBold-800.ttf');
+        font-weight: 800;
+    }
+    
+    @font-face {
+        font-family: 'Inter';
+        src: url('assets/fonts/inter/Inter-Black-900.ttf');
+        font-weight: 900;
+    }
+
+    *{
+        font-family: 'Inter';
+    }
+    
+    :root{
+        --primary-color: #00317A;
+        --container-max-width: 80%;
+    }
+    
+    .limited-container{
+        max-width: 93%;
+        margin: 0px auto;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar,
+    .no-scroll::-webkit-scrollbar
+    {
+        display: none;
+    }
+    .overflow-x-auto,
+    .no-scroll{
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    /* @media screen and (min-width: 1280px) {
+        .limited-container{
+            max-width: var(--container-max-width);
+        }
+    } */
+
+    @media screen and (min-width: 1440px) {
+        .limited-container{
+            max-width: var(--container-max-width);
+        }
+    }
+
+}
+

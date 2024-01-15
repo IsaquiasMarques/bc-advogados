@@ -5,6 +5,15 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "paths": {
+      "@core/*": ["./src/app/core/*"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@templates/*": ["./src/app/shared/templates/*"],
+      "@layout/*": ["./src/app/layout/*"],
+      "@data/*": ["./src/app/data/*"],
+      "@modules/*": ["./src/app/modules/*"],
+      "@environments/*": ["./src/environments/*"]
+    },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,

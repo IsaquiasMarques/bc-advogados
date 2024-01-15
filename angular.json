@@ -58,7 +58,13 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "./src/environments/environment.ts",
+                  "with": "./src/environments/environment.prod.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
@@ -103,6 +109,35 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "./src/environments/environment.ts",
+                  "with": "./src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "bc:build:production",
+              "serveTarget": "bc:serve-ssr:production"
+            },
+            "development": {
+              "buildTarget": "bc:build:development",
+              "serveTarget": "bc:serve-ssr:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

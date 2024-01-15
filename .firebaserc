@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "bc-advogados"
+  },
+  "targets": {
+    "bc-advogados": {
+      "hosting": {
+        "bc": [
+          "bc-advogados"
+        ]
+      }
+    }
+  }
+}

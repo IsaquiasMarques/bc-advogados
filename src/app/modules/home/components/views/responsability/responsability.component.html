@@ -1,0 +1,31 @@
+<div class="responsability-section">
+    <div class="limited-container h-[5px]" #limitedContainerElement>
+        <span class="hidden-reference"></span>
+    </div>
+    <div class="section-body flex flex-col xl:flex-row justify-between items-center"
+    [style.paddingLeft.px]="this.sectionBodyPaddingLeft$ | async"
+    [style.paddingRight.px]="(this.screenWidth < 1280) ? (this.sectionBodyPaddingLeft$ | async) : 0"
+    >
+        <div class="section-content">
+            <div class="title mb-4 py-2 xl:max-w-[452px]">
+                <h1 class="text-[#121212] text-center xl:text-left text-[2.5rem] font-semibold leading-[3rem]">
+                    Responsabilidade social
+                    <!-- <svg class="hidden xl:block" width="47" height="44" viewBox="0 0 47 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect y="25" width="10" height="4" rx="1" fill="#93D8FB"/>
+                        <rect x="12" y="25" width="23" height="4" rx="1" fill="#00317A"/>
+                        <rect x="37" y="25" width="10" height="4" rx="1" fill="#93D8FB"/>
+                        <path d="M43.38 22C43.956 22 44.244 22 44.4713 21.8731C44.6463 21.7754 44.8047 21.6051 44.8896 21.4235C44.9999 21.1877 44.9805 20.9189 44.9417 20.3814C44.7734 18.0465 44.2416 15.7504 43.3634 13.581C42.2829 10.9118 40.6993 8.48654 38.7028 6.44365C36.7063 4.40076 34.3362 2.78025 31.7277 1.67465C29.1192 0.569047 26.3234 -1.26286e-07 23.5 0C20.6766 1.26286e-07 17.8808 0.569047 15.2723 1.67465C12.6638 2.78025 10.2937 4.40076 8.2972 6.44365C6.30074 8.48654 4.71707 10.9118 3.63659 13.581C2.7584 15.7504 2.22661 18.0465 2.05827 20.3814C2.01951 20.9189 2.00014 21.1877 2.11036 21.4235C2.19525 21.6051 2.35371 21.7754 2.52873 21.8731C2.75598 22 3.04399 22 3.62 22H4.50491C5.08273 22 5.37163 22 5.5812 21.8963C5.76087 21.8075 5.8867 21.6924 5.9912 21.5213C6.11308 21.3218 6.14105 21.0086 6.197 20.3821C6.35597 18.602 6.77668 16.8534 7.44751 15.1962C8.32069 13.0391 9.60053 11.0792 11.214 9.42824C12.8274 7.77729 14.7428 6.46768 16.8508 5.5742C18.9589 4.68071 21.2183 4.22084 23.5 4.22084C25.7817 4.22084 28.0411 4.68071 30.1492 5.5742C32.2572 6.46768 34.1726 7.77729 35.786 9.42823C37.3995 11.0792 38.6793 13.0391 39.5525 15.1962C40.2233 16.8534 40.644 18.602 40.803 20.3821C40.8589 21.0086 40.8869 21.3218 41.0088 21.5213C41.1133 21.6924 41.2391 21.8075 41.4188 21.8963C41.6284 22 41.9173 22 42.4951 22H43.38Z" fill="#00317A"/>
+                    </svg> -->
+                </h1>
+            </div>
+            <div class="description py-2 mb-12 xl:mb-0 xl:max-w-[423px]">
+                <p class="text-[#808080] text-center xl:text-left leading-6">
+                    Contribuir para uma sociedade mais justa, abraçamos como responsabilidade social e comunitária, a prestação de assistência técnica jurídica e judiciária às pessoas comprovadamente carenciadas.
+                </p>
+            </div>
+        </div>
+        <div class="section-image xl:max-w-[741px] max-h-[606px] rounded-l-lg overflow-hidden">
+            <img src="assets/images/home/responsability/responsability.png" alt="">
+        </div>
+    </div>
+</div>
