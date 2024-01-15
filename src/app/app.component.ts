@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   
   constructor(
     private metaService: MetaService,
-    private router: Router,
     @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
@@ -20,8 +19,8 @@ export class AppComponent implements OnInit {
     this.metaService.addMetaTag({
       title: 'BC Advogados',
       description: 'BC Advogados é uma associação de advogados, que exerce a actividade profissional de Advocacia e Consultoria Jurídica.',
-      image: this.router.url + '/assets/images/home/hero/hero-desktop.png',
-      url: this.router.url
+      image: window.location.href + 'assets/images/home/hero/hero-desktop.png',
+      url: window.location.href
     });
   }
 
