@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Router } from '@angular/router';
 import { MetaService } from '@shared/services/meta.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
   
   constructor(
     private metaService: MetaService,
+    private router: Router,
     @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
@@ -18,8 +20,8 @@ export class AppComponent implements OnInit {
     this.metaService.addMetaTag({
       title: 'BC Advogados',
       description: 'BC Advogados é uma associação de advogados, que exerce a actividade profissional de Advocacia e Consultoria Jurídica.',
-      image: 'assets/images/home/hero/hero-desktop.png',
-      url: (isPlatformBrowser(this.platformId) ? window.location.href : '')
+      image: this.router.url + '/assets/images/home/hero/hero-desktop.png',
+      url: this.router.url
     });
   }
 
