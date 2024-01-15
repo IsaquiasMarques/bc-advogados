@@ -19,8 +19,9 @@ export class AppComponent implements OnInit {
     this.metaService.addMetaTag({
       title: 'BC Advogados',
       description: 'BC Advogados é uma associação de advogados, que exerce a actividade profissional de Advocacia e Consultoria Jurídica.',
-      image: window.location.href + 'assets/images/home/hero/hero-desktop.png',
-      url: window.location.href
+      image: 'https://bc-advogados.vercel.app/assets/images/home/hero/hero-desktop.png',
+      // url: (isPlatformBrowser(this.platformId) ? window.location.href : '')
+      url: 'https://bc-advogados.vercel.app/'
     });
   }
 
