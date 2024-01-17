@@ -8,6 +8,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { MainpageComponent } from './layout/mainpage/mainpage.component';
 import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import { CoreModule } from '@core/core.module';
     AppRoutingModule,
     SharedModule,
     CoreModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideClientHydration()

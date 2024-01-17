@@ -1,0 +1,32 @@
+.modal-body div.input label{
+    font-size: 0.75rem;
+    color: #121212;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+}
+.modal-body div.row div.input > div,
+.modal-body div.input > div{
+    margin-top: 8px;
+}
+.modal-body div.input input,
+.modal-body div.input textarea{
+    padding: 12px;
+    width: 100%;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid rgba(18, 18, 18, 0.08);
+    background: rgba(18, 18, 18, 0.03);
+    resize: none;
+}
+.modal-body div.input input:focus,
+.modal-body div.input textarea:focus{
+    outline: none;
+}
+
+@media screen and (min-width: 1280px) {
+    .modal-body div.input input,
+    .modal-body div.input textarea{
+        padding: 14px;
+    }
+}
