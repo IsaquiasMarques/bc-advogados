@@ -11,10 +11,24 @@
 <div class="footer">
     <app-footer />
 </div>
-
-@if (this.scheduleService.showModalForm()) {
-    <div class="modal-background fixed top-0 left-0 w-full h-full bg-black/50 z-[4201]"></div>
-    <div class="modal w-[90%] xl:max-w-[454px] bg-white px-4 xl:px-8 pt-5 pb-4 xl:pb-8 fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-[4202] rounded-lg">
+<!-- @if (!this.scheduleService.hideModalAfterTime()) { -->
+    <div class="modal-background fixed top-0 left-0 w-full h-full bg-black/50 z-[4201]"
+    (click)="this.toggleScheduleForm()"
+    [ngClass]="{
+        'modal-visible': this.scheduleService.showModalForm(),
+        'modal-hidden': !this.scheduleService.showModalForm() && !this.scheduleService.isFirstLoad(),
+        'modal-disappear': !this.scheduleService.showModalForm() && this.scheduleService.isFirstLoad(),
+        'hidden': !this.scheduleService.hideModalAfterTime()
+    }"
+    ></div>
+    <div class="modal w-[90%] xl:max-w-[454px] bg-white px-4 xl:px-8 pt-5 pb-4 xl:pb-8 fixed z-[4202] rounded-lg"
+    [ngClass]="{
+        'modal-visible': this.scheduleService.showModalForm(),
+        'modal-hidden': !this.scheduleService.showModalForm() && !this.scheduleService.isFirstLoad(),
+        'modal-disappear': !this.scheduleService.showModalForm() && this.scheduleService.isFirstLoad(),
+        'hidden': !this.scheduleService.hideModalAfterTime()
+    }"
+    >
         <div class="modal-header w-full flex justify-end">
             <a href="javascript:void(0)" (click)="this.toggleScheduleForm()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,4 +98,4 @@
             </form>
         </div>
     </div>
-}
+<!-- } -->

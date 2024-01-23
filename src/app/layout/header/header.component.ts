@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   toggleScheduleForm(){
     this.scheduleService.toggleModalForm();
+    // this.scheduleService.openModal();
   }
 
 }
