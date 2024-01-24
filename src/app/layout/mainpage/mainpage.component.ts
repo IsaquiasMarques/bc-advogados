@@ -37,8 +37,6 @@ export class MainpageComponent implements OnInit {
   
   toggleScheduleForm(){
     this.scheduleService.toggleModalForm();
-    console.log(this.scheduleService.showModalForm());
-    // this.scheduleService.closeModal();
   }
 
 }

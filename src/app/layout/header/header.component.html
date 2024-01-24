@@ -1,5 +1,8 @@
-<header class="py-5 bg-white fixed top-0 left-0 w-full z-[4200] backdrop-blur-lg shadow-sm" #headerElement>
-    <div class="limited-container flex justify-between items-center">
+<header class="headerElement py-0 bg-white fixed top-0 left-0 w-full z-[4200] backdrop-blur-lg shadow-sm xl:h-auto overflow-hidden"
+#headerElement
+[style.maxHeight.px]="(!this.showMenu()) ? this.headerMaxHeightHiddenMenu() : this.headerMaxHeightShowingMenu()"
+>
+    <div class="limited-container py-5 flex justify-between items-center" #headerContainerElementRef>
         <div class="logo max-w-[111px] xl:max-w-[140px] max-h-[45px] xl:max-h-[57px]">
             <img src="assets/images/static/logo.png" class="w-full h-full object-cover object-center" alt="">
         </div>
@@ -7,31 +10,50 @@
             <ul class="flex gap-x-8 justify-start items-center">
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElement('about')"
                     class="text-[#030303] hover:text-primary transition-all font-medium"
                     >Quem Somos</a>
                 </li>
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElement('areas')"
                     class="text-[#030303] hover:text-primary transition-all font-medium"
                     >Áreas de Actuação</a>
                 </li>
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElement('responsability', 125)"
                     class="text-[#030303] hover:text-primary transition-all font-medium"
                     >Responsabilidade Social</a>
                 </li>
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElement('contacts')"
                     class="text-[#030303] hover:text-primary transition-all font-medium"
                     >Contactos</a>
                 </li>
             </ul>
         </nav>
-        <div class="schedule">
+        <div class="hamburguer-menu xl:hidden">
+            <a href="javascript:void(0)" (click)="this.toggleMenu()">
+                @if (!this.showMenu()) {
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="5" width="16" height="2" fill="black"/>
+                        <rect x="4" y="11" width="16" height="2" fill="black"/>
+                        <rect x="4" y="17" width="16" height="2" fill="black"/>
+                    </svg>
+                } @else {
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                }
+            </a>
+        </div>
+        <div class="schedule hidden xl:block">
             <button
             (click)="this.toggleScheduleForm()"
             class="px-4 xl:px-6 py-3 font-bold xl:py-4 border-[2px] border-primary text-primary flex justify-center items-center gap-x-2 rounded">
@@ -43,30 +65,36 @@
         </div>
     </div>
 
-    <div class="mobile-menu pt-5 xl:hidden">
-        <nav class="mobile-navigation h-[60vh]">
+    <div class="mobile-menu xl:hidden">
+        <nav class="mobile-navigation h-[60vh] pt-10 limited-container"
+        >
+        <!-- *ngIf="this.showMenu()" -->
             <ul class=" flex flex-col gap-y-8 justify-center items-start">
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElementHindingMenu('about', 90)"
                     class="text-[#030303] text-lg hover:text-primary transition-all font-medium"
                     >Quem Somos</a>
                 </li>
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElementHindingMenu('areas', 90)"
                     class="text-[#030303] text-lg hover:text-primary transition-all font-medium"
                     >Áreas de Actuação</a>
                 </li>
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElementHindingMenu('responsability', 100)"
                     class="text-[#030303] text-lg hover:text-primary transition-all font-medium"
                     >Responsabilidade Social</a>
                 </li>
                 <li>
                     <a
-                    href="javacript:void(0)"
+                    href="javascript:void(0)"
+                    (click)="this.scrollToElementHindingMenu('contacts', 125)"
                     class="text-[#030303] text-lg hover:text-primary transition-all font-medium"
                     >Contactos</a>
                 </li>

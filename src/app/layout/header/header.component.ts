@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, inject, signal } from '@angular/core';
+import { scrollToElement } from '@shared/helpers/scoll/scroller';
 import { ScheduleService } from '@shared/services/header/schedule.service';
 
 @Component({
@@ -7,9 +8,15 @@ import { ScheduleService } from '@shared/services/header/schedule.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-  private scheduleService = inject(ScheduleService);
+  public scheduleService = inject(ScheduleService);
 
   @ViewChild('headerElement') headerElement!: ElementRef<HTMLElement>;
+  @ViewChild('headerContainerElementRef') headerContainerElementRef!: ElementRef<HTMLElement>;
+
+  headerMaxHeightHiddenMenu = signal(85);
+  headerMaxHeightShowingMenu = signal(0);
+  showMenu = signal(false);
+
   @Output() headerElementClientHeight: EventEmitter<number> = new EventEmitter<number>();
   
   ngOnInit(): void {
@@ -17,12 +24,43 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.headerElementClientHeight.emit(this.headerElement.nativeElement.clientHeight);
+    
+    this.headerElementClientHeight.emit(this.headerContainerElementRef.nativeElement.clientHeight);
+    this.headerMaxHeightHiddenMenu.update(value => this.headerContainerElementRef.nativeElement.clientHeight);
+
+    let totalChildrensHeight: number = 0;
+
+    for (let index = 0; index < this.headerElement.nativeElement.children.length; index++) {
+      totalChildrensHeight += this.headerElement.nativeElement.children[index].clientHeight;
+    }
+
+    this.headerMaxHeightShowingMenu.update(val => totalChildrensHeight);
+
   }
 
   toggleScheduleForm(){
     this.scheduleService.toggleModalForm();
-    // this.scheduleService.openModal();
+  }
+
+  openMenu(): void{
+    this.showMenu.update(val => true);
+  }
+
+  closeMenu(): void{
+    this.showMenu.update(val => false);
+  }
+
+  toggleMenu(): void{
+    this.showMenu.update(val => !val);
+  }
+
+  scrollToElement(elementClassName: string, marginAbove: number = 50): void{
+    scrollToElement(elementClassName, marginAbove);
+  }
+
+  scrollToElementHindingMenu(elementClassName: string, marginAbove: number = 50): void{
+    this.scrollToElement(elementClassName, marginAbove);
+    this.closeMenu();
   }
 
 }
