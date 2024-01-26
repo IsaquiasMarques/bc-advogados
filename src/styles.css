@@ -43,6 +43,10 @@
         font-family: 'Inter';
         scroll-behavior: smooth;
     }
+
+    body{
+        overflow-x: hidden;
+    }
     
     :root{
         --primary-color: #00317A;
@@ -75,6 +79,34 @@
         .limited-container{
             max-width: var(--container-max-width);
         }
+    }
+
+    .slide-from-left{
+        transform: translateX(-100px);
+        transition: 1s;
+        opacity: 0;
+    }
+    .slide-from-left.active{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+    .slide-from-right{
+        transform: translateX(100px);
+        transition: 1s;
+        opacity: 0;
+    }
+    .slide-from-right.active{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+    .slide-from-bottom{
+        transform: translateY(100px);
+        transition: 1s;
+        opacity: 0;
+    }
+    .slide-from-bottom.active{
+        transform: translateY(0px);
+        opacity: 1;
     }
 
 }

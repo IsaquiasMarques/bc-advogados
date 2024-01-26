@@ -6,7 +6,7 @@
     [style.paddingLeft.px]="this.sectionBodyPaddingLeft$ | async"
     [style.paddingRight.px]="(this.screenWidth < 1280) ? (this.sectionBodyPaddingLeft$ | async) : 0"
     >
-        <div class="section-content">
+        <div class="section-content slide-from-left">
             <div class="title mb-4 py-2 xl:max-w-[452px]">
                 <h1 class="text-[#121212] text-center xl:text-left text-[2.5rem] font-semibold leading-[3rem]">
                     Responsabilidade social
@@ -24,7 +24,7 @@
                 </p>
             </div>
         </div>
-        <div class="section-image xl:max-w-[741px] max-h-[606px] rounded-lg xl:rounded-r-none overflow-hidden">
+        <div class="section-image slide-from-right xl:max-w-[741px] max-h-[606px] rounded-lg xl:rounded-r-none overflow-hidden">
             <img src="assets/images/home/responsability/responsability.png" alt="">
         </div>
     </div>
