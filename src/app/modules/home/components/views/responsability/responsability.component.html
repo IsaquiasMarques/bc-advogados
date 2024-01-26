@@ -2,11 +2,11 @@
     <div class="limited-container h-[5px]" #limitedContainerElement>
         <span class="hidden-reference"></span>
     </div>
-    <div class="section-body flex flex-col xl:flex-row justify-between items-center"
+    <div class="section-body overflow-hidden flex flex-col xl:flex-row justify-between items-center"
     [style.paddingLeft.px]="this.sectionBodyPaddingLeft$ | async"
     [style.paddingRight.px]="(this.screenWidth < 1280) ? (this.sectionBodyPaddingLeft$ | async) : 0"
     >
-        <div class="section-content slide-from-left">
+        <div class="section-content">
             <div class="title mb-4 py-2 xl:max-w-[452px]">
                 <h1 class="text-[#121212] text-center xl:text-left text-[2.5rem] font-semibold leading-[3rem]">
                     Responsabilidade social

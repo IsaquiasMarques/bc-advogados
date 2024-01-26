@@ -1,8 +1,8 @@
-<header class="headerElement py-0 bg-white fixed top-0 left-0 w-full z-[4200] backdrop-blur-lg shadow-sm xl:h-auto overflow-hidden"
+<header class="headerElement py-0 bg-white fixed top-0 left-0 xl:flex xl:justify-start xl:items-center w-full z-[4200] backdrop-blur-lg shadow-sm xl:h-auto overflow-hidden"
+[style.maxHeight.px]="(!this.showMenu()) ? headerMaxHeightHiddenMenu() : this.headerMaxHeightShowingMenu()"
 #headerElement
-[style.maxHeight.px]="(!this.showMenu()) ? 85 : this.headerMaxHeightShowingMenu()"
 >
-    <div class="limited-container py-5 flex justify-between items-center" #headerContainerElementRef>
+    <div class="headerContainerElementRef limited-container w-full py-5 flex justify-between items-center" #headerContainerElementRef>
         <div class="logo max-w-[111px] xl:max-w-[140px] max-h-[45px] xl:max-h-[57px]">
             <img src="assets/images/static/logo.png" class="w-full h-full object-cover object-center" alt="">
         </div>

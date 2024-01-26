@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, OnInit, Output, PLATFORM_ID, ViewChild, inject, signal } from '@angular/core';
 import { scrollToElement } from '@shared/helpers/scoll/scroller';
 import { ScheduleService } from '@shared/services/header/schedule.service';
 
@@ -9,6 +10,7 @@ import { ScheduleService } from '@shared/services/header/schedule.service';
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   public scheduleService = inject(ScheduleService);
+  @Inject(PLATFORM_ID) private platformId: any
 
   @ViewChild('headerElement') headerElement!: ElementRef<HTMLElement>;
   @ViewChild('headerContainerElementRef') headerContainerElementRef!: ElementRef<HTMLElement>;
@@ -24,7 +26,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    
     this.headerElementClientHeight.emit(this.headerContainerElementRef.nativeElement.clientHeight);
     this.headerMaxHeightHiddenMenu.update(value => this.headerContainerElementRef.nativeElement.clientHeight);
 
@@ -36,6 +37,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     this.headerMaxHeightShowingMenu.update(val => totalChildrensHeight);
 
+  }
+
+  screenWidth(): number{
+    return (isPlatformBrowser(this.platformId)) ? window.screen.width : 1536;
   }
 
   toggleScheduleForm(){
@@ -62,5 +67,4 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.scrollToElement(elementClassName, marginAbove);
     this.closeMenu();
   }
-
 }

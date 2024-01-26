@@ -7,7 +7,6 @@ import { Component, HostListener } from '@angular/core';
 })
 export class HomeComponent {
 
-  
   @HostListener('window:scroll', ['$event']) scrollEvent(){
 
     let windowHeight = window.innerHeight;
