@@ -1,5 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { ApiService } from '@core/api/api.service';
+import { ISchedule } from '@data/interfaces/schedule.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,8 @@ export class ScheduleService {
   isFirstLoad = signal(true);
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    private apiService: ApiService
   ) { }
 
   openModal(){
@@ -29,7 +33,6 @@ export class ScheduleService {
     // console.log(this.showModalForm());
     if(!this.showModalForm()){
       setTimeout(() => {
-          console.log("É suposto desaparecer agora")
           this.hideModalAfterTime.update(val => false);
       }, 1000);
     }
@@ -44,8 +47,8 @@ export class ScheduleService {
       let body = document.querySelector('body') as HTMLElement;
       
       if(this.showModalForm()){
-        body.style.height = '90vh';
-        body.style.overflow = 'hidden';
+        // body.style.height = '90vh';
+        // body.style.overflow = 'hidden';
       }else{
         body.style.height = 'auto';
         body.style.overflow = 'auto';
@@ -53,6 +56,10 @@ export class ScheduleService {
 
     }
 
+  }
+
+  submit(formData: FormData): Observable<any>{
+    return this.apiService.submit(formData);
   }
 
 }

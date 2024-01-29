@@ -11,91 +11,139 @@
 <div class="footer">
     <app-footer />
 </div>
-<!-- @if (!this.scheduleService.hideModalAfterTime()) { -->
-    <div class="modal-background fixed top-0 left-0 w-full h-full bg-black/50 z-[4201]"
-    (click)="this.toggleScheduleForm()"
-    [ngClass]="{
-        'modal-visible': this.scheduleService.showModalForm(),
-        'modal-hidden': !this.scheduleService.showModalForm() && !this.scheduleService.isFirstLoad(),
-        'modal-disappear': !this.scheduleService.showModalForm() && this.scheduleService.isFirstLoad(),
-        'hidden': !this.scheduleService.hideModalAfterTime()
-    }"
-    ></div>
-    <div class="modal w-[90%] xl:max-w-[454px] bg-white px-4 xl:px-8 pt-5 pb-4 xl:pb-8 fixed z-[4202] rounded-lg"
-    [ngClass]="{
-        'modal-visible': this.scheduleService.showModalForm(),
-        'modal-hidden': !this.scheduleService.showModalForm() && !this.scheduleService.isFirstLoad(),
-        'modal-disappear': !this.scheduleService.showModalForm() && this.scheduleService.isFirstLoad(),
-        'hidden': !this.scheduleService.hideModalAfterTime()
-    }"
-    >
-        <div class="modal-header w-full flex justify-end">
-            <a href="javascript:void(0)" (click)="this.toggleScheduleForm()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 6L6 18M6 6L18 18" stroke="#A0A0A0" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-        </div>
-        <div class="modal-body">
-            <form class="flex flex-col gap-y-2 xl:gap-y-5" [formGroup]="this.scheduleFormGroup" action="">
-                <div class="input">
-                    <label for="">Nome</label>
+
+<div class="modal-background fixed top-0 left-0 w-full h-full bg-black/50 z-[4201]"
+(click)="this.toggleScheduleForm()"
+[ngClass]="{
+    'modal-visible': this.scheduleService.showModalForm(),
+    'modal-hidden': !this.scheduleService.showModalForm() && !this.scheduleService.isFirstLoad(),
+    'modal-disappear': !this.scheduleService.showModalForm() && this.scheduleService.isFirstLoad(),
+    'hidden': !this.scheduleService.hideModalAfterTime()
+}"
+></div>
+<div class="modal w-[90%] xl:max-w-[454px] bg-white px-4 xl:px-8 pt-5 pb-4 xl:pb-8 fixed z-[4202] rounded-lg"
+[ngClass]="{
+    'modal-visible': this.scheduleService.showModalForm(),
+    'modal-hidden': !this.scheduleService.showModalForm() && !this.scheduleService.isFirstLoad(),
+    'modal-disappear': !this.scheduleService.showModalForm() && this.scheduleService.isFirstLoad(),
+    'hidden': !this.scheduleService.hideModalAfterTime()
+}"
+>
+    <div class="modal-header w-full flex justify-end">
+        <a href="javascript:void(0)" (click)="this.toggleScheduleForm()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="#A0A0A0" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
+    <div class="modal-body">
+        <form
+        class="flex flex-col gap-y-2 xl:gap-y-5"
+        [formGroup]="this.scheduleFormGroup"
+        (submit)="this.formSumbit()"
+        >
+            <div class="input">
+                <label for="">Nome</label>
+                <div>
+                    <input
+                    type="text"
+                    formControlName="name"
+                    name="name"
+                    [ngClass]="{
+                        'is-invalid': this.scheduleFormGroup.get('name').invalid && this.scheduleFormGroup.get('name').touched
+                    }"
+                    placeholder=""
+                    >
+                </div>
+            </div>
+            <div class="input">
+                <label for="">Email</label>
+                <div>
+                    <input
+                    type="email"
+                    formControlName="email"
+                    name="email"
+                    [ngClass]="{
+                        'is-invalid': this.scheduleFormGroup.get('email').invalid && this.scheduleFormGroup.get('email').touched
+                    }"
+                    placeholder=""
+                    >
+                </div>
+            </div>
+            <div class="row flex flex-col gap-y-5 xl:flex-row xl:gap-x-4 justify-between xl:items-center">
+                <div class="input w-full">
+                    <label for="">Assunto</label>
                     <div>
                         <input
                         type="text"
-                        formControlName="name"
-                        name="name"
+                        formControlName="subject"
+                        name="subject"
+                        [ngClass]="{
+                            'is-invalid': this.scheduleFormGroup.get('subject').invalid && this.scheduleFormGroup.get('subject').touched
+                        }"
                         placeholder=""
                         >
                     </div>
                 </div>
-                <div class="input">
-                    <label for="">Email</label>
+                <div class="input w-full">
+                    <label for="">Entidade</label>
                     <div>
-                        <input
-                        type="email"
-                        formControlName="email"
-                        name="email"
+                        <!-- <input
+                        type="text"
+                        formControlName="company"
+                        name="company"
+                        [ngClass]="{
+                            'is-invalid': this.scheduleFormGroup.get('company').invalid && this.scheduleFormGroup.get('company').touched
+                        }"
                         placeholder=""
+                        > -->
+                        <select
+                        name="company"
+                        formControlName="company"
+                        id=""
+                        [ngClass]="{
+                            'is-invalid': this.scheduleFormGroup.get('company').invalid && this.scheduleFormGroup.get('company').touched
+                        }"
                         >
+                            <option value="Colectiva">Colectiva</option>
+                            <option value="Individual">Individual</option>
+                        </select>
                     </div>
                 </div>
-                <div class="row flex flex-col gap-y-5 xl:flex-row xl:gap-x-4 justify-between xl:items-center">
-                    <div class="input">
-                        <label for="">Assunto</label>
-                        <div>
-                            <input
-                            type="text"
-                            formControlName="subject"
-                            name="subject"
-                            placeholder=""
-                            >
-                        </div>
-                    </div>
-                    <div class="input">
-                        <label for="">Empresa</label>
-                        <div>
-                            <input
-                            type="text"
-                            formControlName="company"
-                            name="company"
-                            placeholder=""
-                            >
-                        </div>
-                    </div>
+            </div>
+            <div class="input">
+                <label for="">Mensagem</label>
+                <div>
+                    <textarea
+                    name="message"
+                    formControlName="message"
+                    [ngClass]="{
+                        'is-invalid': this.scheduleFormGroup.get('message').invalid && this.scheduleFormGroup.get('message').touched
+                    }"
+                    id=""
+                    cols="30" rows="3"></textarea>
                 </div>
-                <div class="input">
-                    <label for="">Mensagem</label>
-                    <div>
-                        <textarea name="message" id="" cols="30" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="button flex justify-center items-center">
-                    <button type="submit" class="bg-primary text-white text-sm xl:text-base px-6 py-3 rounded">
-                        Enviar mensagem de agendamento
-                    </button>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div class="callback" *ngIf="this.formCallback">
+                @if (this.formCallback.code === 200) {
+                    <p class="text-green-700 text-center">{{ this.formCallback.message }}</p>
+                } @else {
+                    <p class="text-red-700 text-center">{{ this.formCallback.message }}</p>
+                }
+            </div>
+            <div class="button flex justify-center items-center">
+                <button type="submit" class="bg-primary text-white text-sm xl:text-base px-6 py-3 rounded cursor-pointer flex justify-center items-center"
+                [disabled]="this.scheduleFormGroup.invalid"
+                >
+                    @if (!(this.isLoading$ | async)){
+                        <span>
+                            Enviar mensagem de agendamento
+                        </span>
+                    } @else {
+                        <img src="assets/svg/static/loading.svg" class="" width="24" height="24" alt="">
+                    }
+                </button>
+            </div>
+        </form>
     </div>
-<!-- } -->
+</div>

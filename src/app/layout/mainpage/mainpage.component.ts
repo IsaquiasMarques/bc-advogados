@@ -1,5 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit, computed, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ISchedule } from '@data/interfaces/schedule.interface';
 import { ScheduleService } from '@shared/services/header/schedule.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -13,10 +15,13 @@ export class MainpageComponent implements OnInit {
   public scheduleService = inject(ScheduleService);
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: any
   ) { }
 
   scheduleFormGroup: any;
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  formCallback!: { code: number, message: string } | null;
 
   headerComponentClientHeight$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   
@@ -39,4 +44,39 @@ export class MainpageComponent implements OnInit {
     this.scheduleService.toggleModalForm();
   }
 
+  formSumbit(){
+    this.isLoading$.next(true);
+    const formData: FormData = new FormData();
+    formData.append('name', this.scheduleFormGroup.get('name').value);
+    formData.append('email', this.scheduleFormGroup.get('email').value);
+    formData.append('subject', this.scheduleFormGroup.get('subject').value);
+    formData.append('company', this.scheduleFormGroup.get('company').value);
+    formData.append('message', this.scheduleFormGroup.get('message').value);
+
+    this.scheduleService.submit(formData).subscribe({
+      next: (callback: any) => {
+        // console.log(callback)
+        this.formCallback = { code: callback.code, message: callback.message ?? callback.mensagem }
+        this.scheduleFormGroup.reset();
+        this.resetCallback();
+        this.isLoading$.next(false);
+      },
+      error: (error: any) => {
+        // console.log(error)
+        this.formCallback = { code: error.status, message: error.message }
+        this.resetCallback();
+        this.isLoading$.next(false);
+      }
+    });
+
+  }
+  
+  resetCallback(timer: number = 4){
+    if(isPlatformBrowser(this.platformId)){
+      setTimeout(() => {
+        this.formCallback = null;
+  
+      }, timer * 1000);
+    }
+  }
 }
