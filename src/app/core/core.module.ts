@@ -1,3 +1,4 @@
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 
@@ -6,6 +7,8 @@ import { NgModule } from '@angular/core';
   declarations: [],
   imports: [
     
+  ],
+  providers: [
   ]
 })
 export class CoreModule { }

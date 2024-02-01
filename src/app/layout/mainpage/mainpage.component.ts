@@ -55,15 +55,15 @@ export class MainpageComponent implements OnInit {
 
     this.scheduleService.submit(formData).subscribe({
       next: (callback: any) => {
-        // console.log(callback)
-        this.formCallback = { code: callback.code, message: callback.message ?? callback.mensagem }
+        console.log(callback)
+        this.formCallback = { code: callback.code, message: callback.mensagem ?? callback.message }
         this.scheduleFormGroup.reset();
         this.resetCallback();
         this.isLoading$.next(false);
       },
       error: (error: any) => {
-        // console.log(error)
-        this.formCallback = { code: error.status, message: error.message }
+        console.log(error)
+        this.formCallback = { code: error.status, message: error.error.mensagem ?? error.message }
         this.resetCallback();
         this.isLoading$.next(false);
       }
