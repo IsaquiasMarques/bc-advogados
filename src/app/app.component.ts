@@ -1,6 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { Router } from '@angular/router';
 import { MetaService } from '@shared/services/meta.service';
 
 @Component({
@@ -19,9 +17,9 @@ export class AppComponent implements OnInit {
     this.metaService.addMetaTag({
       title: 'BC Advogados',
       description: 'BC Advogados é uma associação de advogados, que exerce a actividade profissional de Advocacia e Consultoria Jurídica.',
-      image: 'https://bc-advogados.vercel.app/assets/images/home/hero/hero-desktop.png',
+      image: 'https://bcadvogados.ao/assets/images/home/hero/hero-desktop.png',
       // url: (isPlatformBrowser(this.platformId) ? window.location.href : '')
-      url: 'https://bc-advogados.vercel.app/'
+      url: 'https://bcadvogados.ao/'
     });
   }
 
